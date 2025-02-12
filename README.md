@@ -24,3 +24,21 @@ The database is structured around several key entities that represent the core a
     Playlist: Users can create and manage playlists, which are stored in the Playlist table. Each playlist has a unique playlist_id and is associated with a specific user. Playlists can contain multiple songs, and the relationship between playlists and songs is represented in the Playlist_Songs table. 
 
     Playlist_Songs: This is a junction table that captures the many-to-many relationship between playlists and songs. Each entry in the table associates a playlist_id with a song_id, allowing multiple songs to belong to a playlist and multiple playlists to contain the same song. 
+
+The relational design is normalized to ensure data integrity and reduce redundancy. Normalization ensures that the database structure avoids anomalies during data insertion, update, or deletion. The design is normalized to 3NF, which entails: 
+
+    1NF (First Normal Form): All attributes in the database are atomic, meaning that each value in a table column is indivisible. For example, the Users table stores user information in discrete columns, with no repeating groups of attributes. 
+
+    2NF (Second Normal Form): The design eliminates partial dependencies, ensuring that all non-key attributes are fully functionally dependent on the primary key. For instance, the Songs table ensures that each song’s details, such as title, artist, and album, depend entirely on the song_id. 
+
+    3NF (Third Normal Form): The design eliminates transitive dependencies, ensuring that non-key attributes depend only on the primary key and not on other non-key attributes. For example, the Moods table ensures that the mood name is directly dependent on the mood_id, with no indirect dependency through another attribute. 
+
+Keys and Constraints 
+
+To ensure the integrity and uniqueness of the data, the database design incorporates several keys and constraints: 
+
+    Primary Keys (PK): Every table has a primary key (e.g., user_id, song_id, playlist_id) that uniquely identifies each record. These primary keys ensure that each record in a table is distinct. 
+
+    Foreign Keys (FK): Foreign keys are used to establish relationships between tables. For instance, the user_id in the Listening_History table references the Users table, while the song_id in the Playlist_Songs table references the Songs table. These foreign key relationships ensure referential integrity, meaning that every foreign key value must correspond to an existing record in the referenced table. 
+
+    Unique Constraints: Certain fields, such as username in the Users table, are required to be unique to avoid duplicates. 
