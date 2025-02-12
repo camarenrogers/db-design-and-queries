@@ -42,3 +42,9 @@ To ensure the integrity and uniqueness of the data, the database design incorpor
     Foreign Keys (FK): Foreign keys are used to establish relationships between tables. For instance, the user_id in the Listening_History table references the Users table, while the song_id in the Playlist_Songs table references the Songs table. These foreign key relationships ensure referential integrity, meaning that every foreign key value must correspond to an existing record in the referenced table. 
 
     Unique Constraints: Certain fields, such as username in the Users table, are required to be unique to avoid duplicates. 
+
+## Tech Stack 
+- **Database:** PostgreSQL  
+- **Query Language:** SQL (Joins, Aggregations, Indexing)  
+- **Data Visualization:** Matplotlib & Seaborn  
+- **Tools:** Git, DBeaver, pgAdmin  
