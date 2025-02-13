@@ -1,0 +1,90 @@
+-- Users Table
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    SubscriptionType ENUM('Free', 'Premium', 'Family', 'Student') NOT NULL,
+    DateJoined TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Genres Table
+CREATE TABLE Genres (
+    GenreID INT PRIMARY KEY AUTO_INCREMENT,
+    GenreName VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Artists Table
+CREATE TABLE Artists (
+    ArtistID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Country VARCHAR(100),
+    GenreID INT,
+    FOREIGN KEY (GenreID) REFERENCES Genres(GenreID) ON DELETE SET NULL
+);
+
+-- Albums Table
+CREATE TABLE Albums (
+    AlbumID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(200) NOT NULL,
+    ReleaseDate DATE NOT NULL,
+    ArtistID INT NOT NULL,
+    FOREIGN KEY (ArtistID) REFERENCES Artists(ArtistID) ON DELETE CASCADE
+);
+
+-- Songs Table
+CREATE TABLE Songs (
+    SongID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(200) NOT NULL,
+    Duration TIME NOT NULL,
+    AlbumID INT NOT NULL,
+    GenreID INT NOT NULL,
+    FOREIGN KEY (AlbumID) REFERENCES Albums(AlbumID) ON DELETE CASCADE,
+    FOREIGN KEY (GenreID) REFERENCES Genres(GenreID) ON DELETE CASCADE
+);
+
+-- Moods Table
+CREATE TABLE Moods (
+    MoodID INT PRIMARY KEY AUTO_INCREMENT,
+    MoodName VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Associative Table for Song-Mood Relationship
+CREATE TABLE Song_Moods (
+    SongMoodID INT PRIMARY KEY AUTO_INCREMENT,
+    SongID INT NOT NULL,
+    MoodID INT NOT NULL,
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID) ON DELETE CASCADE,
+    FOREIGN KEY (MoodID) REFERENCES Moods(MoodID) ON DELETE CASCADE,
+    UNIQUE (SongID, MoodID)
+);
+
+-- Playlists Table
+CREATE TABLE Playlists (
+    PlaylistID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(200) NOT NULL,
+    UserID INT NOT NULL,
+    CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+-- Associative Table for Playlist-Song Relationship
+CREATE TABLE Playlist_Songs (
+    PlaylistSongID INT PRIMARY KEY AUTO_INCREMENT,
+    PlaylistID INT NOT NULL,
+    SongID INT NOT NULL,
+    FOREIGN KEY (PlaylistID) REFERENCES Playlists(PlaylistID) ON DELETE CASCADE,
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID) ON DELETE CASCADE,
+    UNIQUE (PlaylistID, SongID)
+);
+
+-- Listening History Table
+CREATE TABLE ListeningHistory (
+    ListeningHistoryID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    SongID INT NOT NULL,
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    MoodID INT,  -- Optional, if mood tracking is active
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE,
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID) ON DELETE CASCADE,
+    FOREIGN KEY (MoodID) REFERENCES Moods(MoodID) ON DELETE SET NULL
+);
