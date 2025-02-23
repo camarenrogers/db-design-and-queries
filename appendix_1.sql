@@ -1,1 +1,0 @@
-WHERE m.mood_name = ?;
