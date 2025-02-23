@@ -2,6 +2,7 @@
 Optimizing Data Flow and Operations: A 3NF Approach to Spotify's Database Design 
 
 Project Overview:
+
 This project focuses on designing a relational database for Spotify using Entity-Relationship (ER) modeling, ensuring Third Normal Form (3NF) for efficient data management. The goal is to support a new feature that tracks user listening habits and links music to moods while maintaining data integrity and optimized query performance.
 
 Database Design
