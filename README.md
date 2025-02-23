@@ -36,7 +36,11 @@ The database is structured around several key entities that represent the core a
     Playlist: Users can create and manage playlists, which are stored in the Playlist table. Each playlist has a unique playlist_id and is associated with a specific user. Playlists can contain multiple songs, and the relationship between playlists and songs is represented in the Playlist_Songs table. 
 
     Playlist_Songs: This is a junction table that captures the many-to-many relationship between playlists and songs. Each entry in the table associates a playlist_id with a song_id, allowing multiple songs to belong to a playlist and multiple playlists to contain the same song. 
+Features & Benefits
 
+✅ Normalized to 3NF – Eliminates redundancy, improves consistency.
+✅ Efficient Querying – Optimized for fast and scalable data retrieval.
+✅ Enhanced Music Discovery – Enables mood-based song recommendations.
 The relational design is normalized to ensure data integrity and reduce redundancy. Normalization ensures that the database structure avoids anomalies during data insertion, update, or deletion. The design is normalized to 3NF, which entails: 
 
     1NF (First Normal Form): All attributes in the database are atomic, meaning that each value in a table column is indivisible. For example, the Users table stores user information in discrete columns, with no repeating groups of attributes. 
