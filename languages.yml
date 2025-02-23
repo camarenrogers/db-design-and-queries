@@ -1,5 +1,0 @@
-languages:
-  - SQL:
-      description: "SQL used for database queries and structure"
-      files:
-        - "*.sql"
