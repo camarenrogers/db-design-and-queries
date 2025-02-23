@@ -39,8 +39,11 @@ The database is structured around several key entities that represent the core a
 Features & Benefits
 
 ✅ Normalized to 3NF – Eliminates redundancy, improves consistency.
+
 ✅ Efficient Querying – Optimized for fast and scalable data retrieval.
+
 ✅ Enhanced Music Discovery – Enables mood-based song recommendations.
+
 The relational design is normalized to ensure data integrity and reduce redundancy. Normalization ensures that the database structure avoids anomalies during data insertion, update, or deletion. The design is normalized to 3NF, which entails: 
 
     1NF (First Normal Form): All attributes in the database are atomic, meaning that each value in a table column is indivisible. For example, the Users table stores user information in discrete columns, with no repeating groups of attributes. 
